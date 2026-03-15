@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $oferta->titulo }}</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">{{ $oferta->titulo }}</h1>
     </x-slot>
 
     <div class="py-8">
@@ -8,7 +8,7 @@
 
             {{-- Info de la empresa --}}
             <div class="bg-white shadow rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Empresa</h3>
+                <h2 class="text-lg font-semibold text-gray-800 mb-2">Empresa</h2>
                 <p class="text-gray-700 font-medium">
                     {{ $oferta->empresa->empresaProfile->nombre_empresa ?? $oferta->empresa->name }}
                 </p>
@@ -41,21 +41,21 @@
                     @endif
                 </div>
 
-                <h3 class="text-lg font-semibold text-gray-800">Descripción</h3>
+                <h2 class="text-lg font-semibold text-gray-800">Descripción</h2>
                 <p class="text-gray-700 whitespace-pre-line mt-1">{{ $oferta->descripcion }}</p>
 
                 @if($oferta->requisitos)
-                    <h3 class="text-lg font-semibold text-gray-800 mt-4">Requisitos</h3>
+                    <h2 class="text-lg font-semibold text-gray-800 mt-4">Requisitos</h2>
                     <p class="text-gray-700 whitespace-pre-line mt-1">{{ $oferta->requisitos }}</p>
                 @endif
 
                 @if($oferta->beneficios)
-                    <h3 class="text-lg font-semibold text-gray-800 mt-4">Beneficios</h3>
+                    <h2 class="text-lg font-semibold text-gray-800 mt-4">Beneficios</h2>
                     <p class="text-gray-700 whitespace-pre-line mt-1">{{ $oferta->beneficios }}</p>
                 @endif
 
                 @if($oferta->adaptaciones_disponibles)
-                    <h3 class="text-lg font-semibold text-gray-800 mt-4">Adaptaciones disponibles</h3>
+                    <h2 class="text-lg font-semibold text-gray-800 mt-4">Adaptaciones disponibles</h2>
                     <p class="text-gray-700 whitespace-pre-line mt-1">{{ $oferta->adaptaciones_disponibles }}</p>
                 @endif
 
@@ -76,7 +76,7 @@
                         <p class="text-gray-700">Ya te postulaste a esta oferta ({{ $postulacionExistente->created_at->diffForHumans() }}).</p>
                     </div>
                 @else
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Postularte a esta oferta</h3>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Postularte a esta oferta</h2>
                     <form method="POST" action="{{ route('candidato.postulaciones.store', $oferta) }}">
                         @csrf
                         <div class="mb-4">

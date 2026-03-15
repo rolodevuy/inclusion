@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Ofertas de Empleo</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">Ofertas de Empleo</h1>
     </x-slot>
 
     <div class="py-8">
@@ -59,17 +59,17 @@
             {{-- Recomendadas --}}
             @if($recomendadas->isNotEmpty())
             <section class="mb-6" aria-labelledby="recomendadas">
-                <h3 id="recomendadas" class="text-lg font-semibold text-gray-800 mb-3">Recomendadas para vos</h3>
+                <h2 id="recomendadas" class="text-lg font-semibold text-gray-800 mb-3">Recomendadas para vos</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach($recomendadas as $rec)
                         <article class="bg-blue-50 border border-blue-200 rounded-lg p-5 flex flex-col">
                             <div class="flex justify-between items-start">
-                                <h4 class="text-lg font-semibold text-gray-800">
+                                <h3 class="text-lg font-semibold text-gray-800">
                                     <a href="{{ route('candidato.ofertas.show', $rec) }}"
                                        class="text-blue-700 hover:underline focus:outline-none focus:underline">
                                         {{ $rec->titulo }}
                                     </a>
-                                </h4>
+                                </h3>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 whitespace-nowrap ml-2">
                                     {{ $rec->puntaje_match }}% match
                                 </span>
@@ -104,12 +104,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach($ofertas as $oferta)
                         <article class="bg-white shadow rounded-lg p-5 flex flex-col">
-                            <h3 class="text-lg font-semibold text-gray-800">
+                            <h2 class="text-lg font-semibold text-gray-800">
                                 <a href="{{ route('candidato.ofertas.show', $oferta) }}"
                                    class="text-blue-700 hover:underline focus:outline-none focus:underline">
                                     {{ $oferta->titulo }}
                                 </a>
-                            </h3>
+                            </h2>
                             <p class="text-sm text-gray-600 mt-1">
                                 {{ $oferta->empresa->empresaProfile->nombre_empresa ?? $oferta->empresa->name }}
                             </p>

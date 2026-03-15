@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Reportes de Inclusión</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">Reportes de Inclusión</h1>
     </x-slot>
 
     <div class="py-8">
@@ -8,7 +8,7 @@
 
             {{-- Resumen general --}}
             <section aria-labelledby="resumen">
-                <h3 id="resumen" class="text-lg font-semibold text-gray-800 mb-4">Resumen general</h3>
+                <h2 id="resumen" class="text-lg font-semibold text-gray-800 mb-4">Resumen general</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-white shadow rounded-lg p-5 text-center">
                         <p class="text-3xl font-bold text-blue-700">{{ $totalOfertas }}</p>
@@ -33,7 +33,7 @@
 
             {{-- Ofertas por estado --}}
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="ofertas-estado">
-                <h3 id="ofertas-estado" class="text-lg font-semibold text-gray-800 mb-4">Ofertas por estado</h3>
+                <h2 id="ofertas-estado" class="text-lg font-semibold text-gray-800 mb-4">Ofertas por estado</h2>
                 @if($totalOfertas > 0)
                     <div class="space-y-3">
                         @foreach(['activa' => 'green', 'pausada' => 'yellow', 'cerrada' => 'gray'] as $estado => $color)
@@ -56,7 +56,7 @@
 
             {{-- Postulaciones por estado --}}
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="postulaciones-estado">
-                <h3 id="postulaciones-estado" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones por estado</h3>
+                <h2 id="postulaciones-estado" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones por estado</h2>
                 @if($totalPostulaciones > 0)
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                         @foreach(['pendiente' => 'yellow', 'vista' => 'blue', 'aceptada' => 'green', 'rechazada' => 'red'] as $estado => $color)
@@ -74,7 +74,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Postulaciones por mes --}}
                 <section class="bg-white shadow rounded-lg p-6" aria-labelledby="por-mes">
-                    <h3 id="por-mes" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones (últimos 6 meses)</h3>
+                    <h2 id="por-mes" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones (últimos 6 meses)</h2>
                     @if($postulacionesPorMes->isNotEmpty())
                         @php $maxMes = $postulacionesPorMes->max() ?: 1; @endphp
                         <div class="space-y-2">
@@ -97,7 +97,7 @@
 
                 {{-- Postulaciones por categoría --}}
                 <section class="bg-white shadow rounded-lg p-6" aria-labelledby="por-categoria">
-                    <h3 id="por-categoria" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones por área laboral</h3>
+                    <h2 id="por-categoria" class="text-lg font-semibold text-gray-800 mb-4">Postulaciones por área laboral</h2>
                     @if($porCategoria->isNotEmpty())
                         @php $maxCat = $porCategoria->max() ?: 1; @endphp
                         <div class="space-y-2">
@@ -122,7 +122,7 @@
             {{-- Top ofertas --}}
             @if($topOfertas->where('postulaciones_count', '>', 0)->isNotEmpty())
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="top-ofertas">
-                <h3 id="top-ofertas" class="text-lg font-semibold text-gray-800 mb-4">Ofertas con más postulaciones</h3>
+                <h2 id="top-ofertas" class="text-lg font-semibold text-gray-800 mb-4">Ofertas con más postulaciones</h2>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
@@ -157,7 +157,7 @@
 
             {{-- Accesibilidad --}}
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="accesibilidad-info">
-                <h3 id="accesibilidad-info" class="text-lg font-semibold text-gray-800 mb-4">Indicadores de inclusión</h3>
+                <h2 id="accesibilidad-info" class="text-lg font-semibold text-gray-800 mb-4">Indicadores de inclusión</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                     <div class="border rounded-lg p-4">
                         <p class="text-2xl font-bold text-blue-700">{{ $compartieronAccesibilidad }}</p>

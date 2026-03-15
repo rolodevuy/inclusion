@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $empresa->name }}</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">{{ $empresa->name }}</h1>
     </x-slot>
 
     <div class="py-8">
@@ -44,13 +44,13 @@
             {{-- Ofertas activas de esta empresa --}}
             @if($ofertasActivas->isNotEmpty())
             <div class="bg-white shadow rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Ofertas activas ({{ $ofertasActivas->count() }})</h3>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Ofertas activas ({{ $ofertasActivas->count() }})</h2>
                 <div class="space-y-3">
                     @foreach($ofertasActivas as $oferta)
                         <div class="border border-gray-200 rounded-lg p-4">
-                            <h4 class="font-medium text-gray-900">
+                            <h3 class="font-medium text-gray-900">
                                 <a href="{{ route('candidato.ofertas.show', $oferta) }}" class="text-blue-700 hover:underline">{{ $oferta->titulo }}</a>
-                            </h4>
+                            </h3>
                             <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-800">{{ $oferta->categoriaLaboral->nombre ?? '' }}</span>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-700">{{ ucfirst($oferta->modalidad) }}</span>

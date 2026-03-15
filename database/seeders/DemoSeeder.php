@@ -18,6 +18,12 @@ class DemoSeeder extends Seeder
     {
         $password = Hash::make('password');
 
+        // ── Admin ───────────────────────────────────────────
+        User::firstOrCreate(
+            ['email' => 'admin@demo.com'],
+            ['name' => 'Admin Demo', 'password' => $password, 'role' => 'admin', 'is_active' => true, 'email_verified_at' => now()]
+        );
+
         // ── Empresas ──────────────────────────────────────────
         $empresas = [
             ['email' => 'techco@demo.com', 'name' => 'TechCo Uruguay', 'rut' => '211234560018', 'sector' => 'Tecnología', 'descripcion' => 'Desarrollo de software con foco en accesibilidad.', 'departamento_id' => 7, 'politicas_inclusion' => 'Horarios flexibles, trabajo remoto, lectores de pantalla.'],

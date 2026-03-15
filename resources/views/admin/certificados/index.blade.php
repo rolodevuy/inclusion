@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Verificación de Certificados</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">Verificación de Certificados</h1>
     </x-slot>
 
     <div class="py-8">
@@ -8,9 +8,9 @@
 
             {{-- Pendientes --}}
             <section>
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">
                     Pendientes de verificación ({{ $pendientes->count() }})
-                </h3>
+                </h2>
 
                 @if($pendientes->isEmpty())
                     <div class="bg-white shadow rounded-lg p-6 text-center">
@@ -77,7 +77,7 @@
             {{-- Historial --}}
             @if($revisados->isNotEmpty())
             <section>
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Últimos revisados</h3>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Últimos revisados</h2>
                 <div class="bg-white shadow rounded-lg overflow-hidden">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">

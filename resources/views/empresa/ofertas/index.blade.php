@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mis Ofertas de Empleo</h2>
+            <h1 class="text-xl font-semibold text-gray-800 leading-tight">Mis Ofertas de Empleo</h1>
             <a href="{{ route('empresa.ofertas.create') }}"
                class="inline-flex items-center px-4 py-2 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 + Nueva Oferta

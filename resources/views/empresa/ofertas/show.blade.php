@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $oferta->titulo }}</h2>
+            <h1 class="text-xl font-semibold text-gray-800 leading-tight">{{ $oferta->titulo }}</h1>
             <a href="{{ route('empresa.ofertas.edit', $oferta) }}"
                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 Editar oferta
@@ -37,21 +37,21 @@
                 @endif
 
                 <div class="prose max-w-none">
-                    <h3 class="text-lg font-semibold text-gray-800">Descripción</h3>
+                    <h2 class="text-lg font-semibold text-gray-800">Descripción</h2>
                     <p class="text-gray-700 whitespace-pre-line">{{ $oferta->descripcion }}</p>
 
                     @if($oferta->requisitos)
-                        <h3 class="text-lg font-semibold text-gray-800 mt-4">Requisitos</h3>
+                        <h2 class="text-lg font-semibold text-gray-800 mt-4">Requisitos</h2>
                         <p class="text-gray-700 whitespace-pre-line">{{ $oferta->requisitos }}</p>
                     @endif
 
                     @if($oferta->beneficios)
-                        <h3 class="text-lg font-semibold text-gray-800 mt-4">Beneficios</h3>
+                        <h2 class="text-lg font-semibold text-gray-800 mt-4">Beneficios</h2>
                         <p class="text-gray-700 whitespace-pre-line">{{ $oferta->beneficios }}</p>
                     @endif
 
                     @if($oferta->adaptaciones_disponibles)
-                        <h3 class="text-lg font-semibold text-gray-800 mt-4">Adaptaciones disponibles</h3>
+                        <h2 class="text-lg font-semibold text-gray-800 mt-4">Adaptaciones disponibles</h2>
                         <p class="text-gray-700 whitespace-pre-line">{{ $oferta->adaptaciones_disponibles }}</p>
                     @endif
                 </div>
@@ -61,9 +61,9 @@
 
             {{-- Postulantes --}}
             <div class="bg-white shadow rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">
                     Postulantes ({{ $oferta->postulaciones->count() }})
-                </h3>
+                </h2>
 
                 @if($oferta->postulaciones->isEmpty())
                     <p class="text-gray-500">Todavía no hay postulantes para esta oferta.</p>
@@ -151,7 +151,7 @@
             {{-- Candidatos sugeridos --}}
             @if($sugeridos->isNotEmpty())
             <div class="bg-white shadow rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Candidatos sugeridos</h3>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Candidatos sugeridos</h2>
                 <div class="space-y-3">
                     @foreach($sugeridos as $perfil)
                         <div class="border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">

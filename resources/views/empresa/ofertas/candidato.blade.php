@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">
             Perfil de {{ $candidato->name }}
-        </h2>
+        </h1>
     </x-slot>
 
     <div class="py-8">
@@ -30,7 +30,7 @@
 
             {{-- Info básica --}}
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="info-basica">
-                <h3 id="info-basica" class="text-lg font-semibold text-gray-900 mb-4">Información profesional</h3>
+                <h2 id="info-basica" class="text-lg font-semibold text-gray-900 mb-4">Información profesional</h2>
                 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <dt class="text-sm font-medium text-gray-500">Nombre</dt>
@@ -66,7 +66,7 @@
             {{-- Habilidades --}}
             @if($profile->habilidades->count())
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="habilidades">
-                <h3 id="habilidades" class="text-lg font-semibold text-gray-900 mb-4">Habilidades</h3>
+                <h2 id="habilidades" class="text-lg font-semibold text-gray-900 mb-4">Habilidades</h2>
                 <div class="flex flex-wrap gap-2">
                     @foreach($profile->habilidades as $hab)
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
@@ -80,10 +80,10 @@
             {{-- Experiencia --}}
             @if($profile->experiencias->count())
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="experiencia">
-                <h3 id="experiencia" class="text-lg font-semibold text-gray-900 mb-4">Experiencia laboral</h3>
+                <h2 id="experiencia" class="text-lg font-semibold text-gray-900 mb-4">Experiencia laboral</h2>
                 @foreach($profile->experiencias as $exp)
                     <div class="border-b border-gray-200 pb-4 mb-4 last:border-0 last:pb-0 last:mb-0">
-                        <h4 class="font-medium text-gray-900">{{ $exp->cargo }}</h4>
+                        <h3 class="font-medium text-gray-900">{{ $exp->cargo }}</h3>
                         <p class="text-gray-600">{{ $exp->empresa }}</p>
                         <p class="text-sm text-gray-500">
                             {{ $exp->fecha_inicio->format('m/Y') }} —
@@ -99,7 +99,7 @@
 
             {{-- Información de accesibilidad --}}
             <section class="bg-white shadow rounded-lg p-6" aria-labelledby="accesibilidad">
-                <h3 id="accesibilidad" class="text-lg font-semibold text-gray-900 mb-4">Información de accesibilidad</h3>
+                <h2 id="accesibilidad" class="text-lg font-semibold text-gray-900 mb-4">Información de accesibilidad</h2>
 
                 @if($puedeVerAccesibilidad)
                     <dl class="space-y-3">

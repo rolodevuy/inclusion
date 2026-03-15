@@ -11,10 +11,12 @@ class CatalogoController extends Controller
 {
     public function index()
     {
-        $categorias = CategoriaLaboral::withCount('habilidades')->orderBy('nombre')->get();
-        $habilidades = Habilidad::with('categoriaLaboral')->orderBy('nombre')->get();
+        $categorias = CategoriaLaboral::withCount('habilidades')
+            ->with(['habilidades' => fn($q) => $q->orderBy('nombre')])
+            ->orderBy('nombre')->get();
+        $sinCategoria = Habilidad::whereNull('categoria_laboral_id')->orderBy('nombre')->get();
 
-        return view('admin.catalogos.index', compact('categorias', 'habilidades'));
+        return view('admin.catalogos.index', compact('categorias', 'sinCategoria'));
     }
 
     // --- Categorías ---

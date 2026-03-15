@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mis Postulaciones</h2>
+        <h1 class="text-xl font-semibold text-gray-800 leading-tight">Mis Postulaciones</h1>
     </x-slot>
 
     <div class="py-8">
@@ -20,7 +20,7 @@
                         <div class="bg-white shadow rounded-lg p-5">
                             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">
+                                    <h2 class="font-semibold text-gray-800">
                                         @if($postulacion->oferta->estado === 'activa')
                                             <a href="{{ route('candidato.ofertas.show', $postulacion->oferta) }}"
                                                class="text-blue-700 hover:underline focus:outline-none focus:underline">
@@ -30,7 +30,7 @@
                                             {{ $postulacion->oferta->titulo }}
                                             <span class="text-sm text-gray-500">({{ $postulacion->oferta->estado }})</span>
                                         @endif
-                                    </h3>
+                                    </h2>
                                     <p class="text-sm text-gray-600">
                                         {{ $postulacion->oferta->empresa->empresaProfile->nombre_empresa ?? $postulacion->oferta->empresa->name }}
                                         &middot;
