@@ -15,7 +15,10 @@
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                         <div>
                             <h2 class="text-lg font-semibold text-gray-900">
-                                {{ $solicitud->empresa->name }}
+                                <a href="{{ route('candidato.empresa.ver', $solicitud->empresa) }}"
+                                   class="text-blue-700 hover:underline focus:outline-none focus:underline">
+                                    {{ $solicitud->empresa->name }}
+                                </a>
                             </h2>
                             @if($solicitud->empresa->empresaProfile)
                                 <p class="text-gray-600">{{ $solicitud->empresa->empresaProfile->sector }} — {{ $solicitud->empresa->empresaProfile->departamento->nombre ?? '' }}</p>

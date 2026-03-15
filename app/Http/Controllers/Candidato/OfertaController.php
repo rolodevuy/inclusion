@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriaLaboral;
 use App\Models\Departamento;
 use App\Models\OfertaEmpleo;
+use App\Services\MatchingService;
 use Illuminate\Http\Request;
 
 class OfertaController extends Controller
@@ -39,7 +40,20 @@ class OfertaController extends Controller
         $categorias = CategoriaLaboral::orderBy('nombre')->get();
         $departamentos = Departamento::orderBy('nombre')->get();
 
-        return view('candidato.ofertas.index', compact('ofertas', 'categorias', 'departamentos'));
+        // Ofertas recomendadas (solo en la primera página sin filtros)
+        $recomendadas = collect();
+        $sinFiltros = !$request->filled('categoria') && !$request->filled('departamento')
+            && !$request->filled('modalidad') && !$request->filled('buscar')
+            && $request->input('page', 1) == 1;
+
+        if ($sinFiltros) {
+            $profile = auth()->user()->candidatoProfile;
+            if ($profile) {
+                $recomendadas = app(MatchingService::class)->ofertasRecomendadas($profile);
+            }
+        }
+
+        return view('candidato.ofertas.index', compact('ofertas', 'categorias', 'departamentos', 'recomendadas'));
     }
 
     public function show(OfertaEmpleo $oferta)

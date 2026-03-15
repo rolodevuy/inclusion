@@ -7,6 +7,7 @@ use App\Models\CategoriaLaboral;
 use App\Notifications\PostulacionEstadoCambiado;
 use App\Models\Departamento;
 use App\Models\OfertaEmpleo;
+use App\Services\MatchingService;
 use Illuminate\Http\Request;
 
 class OfertaController extends Controller
@@ -60,7 +61,9 @@ class OfertaController extends Controller
 
         $oferta->load(['postulaciones.candidato.candidatoProfile', 'categoriaLaboral', 'departamento']);
 
-        return view('empresa.ofertas.show', compact('oferta'));
+        $sugeridos = app(MatchingService::class)->candidatosSugeridos($oferta, 5);
+
+        return view('empresa.ofertas.show', compact('oferta', 'sugeridos'));
     }
 
     public function edit(OfertaEmpleo $oferta)

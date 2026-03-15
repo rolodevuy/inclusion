@@ -62,6 +62,21 @@ Route::middleware(['auth', 'role:candidato'])->prefix('candidato')->name('candid
     Route::get('/ofertas/{oferta}', [CandidatoOfertaController::class, 'show'])->name('ofertas.show');
     Route::post('/ofertas/{oferta}/postular', [PostulacionController::class, 'store'])->name('postulaciones.store');
     Route::get('/postulaciones', [PostulacionController::class, 'index'])->name('postulaciones.index');
+
+    Route::get('/empresa/{user}', function (\App\Models\User $user) {
+        if ($user->role !== 'empresa') {
+            abort(404);
+        }
+        $profile = $user->empresaProfile;
+        if (!$profile) {
+            abort(404);
+        }
+        $profile->load('departamento');
+        $ofertasActivas = $user->ofertas()->where('estado', 'activa')
+            ->with(['categoriaLaboral', 'departamento'])->get();
+        $empresa = $user;
+        return view('candidato.empresa.show', compact('empresa', 'profile', 'ofertasActivas'));
+    })->name('empresa.ver');
 });
 
 // Empresa

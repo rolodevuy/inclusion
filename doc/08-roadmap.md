@@ -87,10 +87,15 @@
 - [x] Endpoint público: estadísticas generales de la plataforma
 - [x] Endpoints públicos: catálogos (categorías laborales, departamentos)
 
-## Fase 3 — Escalamiento (futuro)
+## Fase 3 — Escalamiento
 
-- Inteligencia artificial para sugerencias de candidatos
-- Matching automático empresa-candidato
-- App móvil
-- Expansión a otros países
-- Integración con portales de empleo existentes
+### Sprint 11: Matching candidato-oferta
+- [x] Servicio de scoring (categoría, departamento, modalidad, habilidades)
+- [x] Ofertas recomendadas para candidatos (sección "Recomendadas para vos")
+- [x] Candidatos sugeridos para empresas (en vista de oferta)
+- [x] Badge de porcentaje de compatibilidad
+
+### Pendientes Fase 3
+- [ ] App móvil
+- [ ] Expansión a otros países
+- [ ] Integración con portales de empleo existentes

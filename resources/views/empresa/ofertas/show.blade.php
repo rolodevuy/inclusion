@@ -148,6 +148,37 @@
                 @endif
             </div>
 
+            {{-- Candidatos sugeridos --}}
+            @if($sugeridos->isNotEmpty())
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Candidatos sugeridos</h3>
+                <div class="space-y-3">
+                    @foreach($sugeridos as $perfil)
+                        <div class="border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div>
+                                <p class="font-semibold text-gray-800">
+                                    <a href="{{ route('empresa.buscador.show', $perfil) }}"
+                                       class="text-blue-700 hover:underline focus:outline-none focus:underline">
+                                        {{ $perfil->user->name }}
+                                    </a>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    {{ $perfil->categoriaLaboral->nombre ?? '' }}
+                                    @if($perfil->departamento)
+                                        &middot; {{ $perfil->departamento->nombre }}
+                                    @endif
+                                    &middot; {{ ucfirst($perfil->modalidad_trabajo) }}
+                                </p>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
+                                {{ $perfil->puntaje_match }}% match
+                            </span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
             <div>
                 <a href="{{ route('empresa.ofertas.index') }}" class="text-sm text-blue-700 hover:underline">&larr; Volver a mis ofertas</a>
             </div>
