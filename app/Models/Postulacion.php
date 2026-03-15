@@ -12,8 +12,16 @@ class Postulacion extends Model
         'oferta_empleo_id',
         'candidato_user_id',
         'mensaje',
+        'compartir_accesibilidad',
         'estado',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'compartir_accesibilidad' => 'boolean',
+        ];
+    }
 
     public function oferta()
     {

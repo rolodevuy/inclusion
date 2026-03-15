@@ -73,9 +73,19 @@
 - [x] Badge de pendientes en navegación admin
 - [x] Estado de verificación visible en perfil del candidato
 
-### Pendientes Fase 2
-- [ ] Reportes de inclusión laboral para empresas
-- [ ] API REST para integraciones
+### Sprint 9: Reportes de inclusión
+- [x] Dashboard de reportes para empresas
+- [x] Métricas: ofertas por estado, postulaciones por estado
+- [x] Tasa de aceptación, tendencia mensual
+- [x] Top ofertas, distribución por categoría laboral
+- [x] Indicadores de inclusión (adaptaciones, accesibilidad compartida)
+
+### Sprint 10: API REST
+- [x] Instalación de Laravel Sanctum
+- [x] Endpoint público: listar ofertas activas con filtros y paginación
+- [x] Endpoint público: detalle de oferta
+- [x] Endpoint público: estadísticas generales de la plataforma
+- [x] Endpoints públicos: catálogos (categorías laborales, departamentos)
 
 ## Fase 3 — Escalamiento (futuro)
 

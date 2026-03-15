@@ -74,12 +74,21 @@
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                     <div>
                                         <p class="font-semibold text-gray-800">
-                                            {{ $postulacion->candidato->name }}
+                                            <a href="{{ route('empresa.ofertas.postulacion.candidato', [$oferta, $postulacion]) }}"
+                                               class="text-blue-700 hover:underline focus:outline-none focus:underline">
+                                                {{ $postulacion->candidato->name }}
+                                            </a>
                                         </p>
                                         @if($postulacion->candidato->candidatoProfile)
                                             <p class="text-sm text-gray-600">
-                                                {{ $postulacion->candidato->candidatoProfile->titulo_profesional ?? '' }}
+                                                {{ $postulacion->candidato->candidatoProfile->categoriaLaboral->nombre ?? '' }}
+                                                @if($postulacion->candidato->candidatoProfile->departamento)
+                                                    &middot; {{ $postulacion->candidato->candidatoProfile->departamento->nombre }}
+                                                @endif
                                             </p>
+                                        @endif
+                                        @if($postulacion->compartir_accesibilidad)
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-green-100 text-green-700 mt-1">Compartió info de accesibilidad</span>
                                         @endif
                                         @if($postulacion->mensaje)
                                             <p class="mt-2 text-sm text-gray-700 italic">"{{ $postulacion->mensaje }}"</p>

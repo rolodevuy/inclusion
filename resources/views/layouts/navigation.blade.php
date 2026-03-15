@@ -53,6 +53,9 @@
                         <x-nav-link :href="route('empresa.buscador.index')" :active="request()->routeIs('empresa.buscador.*')">
                             Buscar Candidatos
                         </x-nav-link>
+                        <x-nav-link :href="route('empresa.reportes.index')" :active="request()->routeIs('empresa.reportes.*')">
+                            Reportes
+                        </x-nav-link>
                         @php
                             $mensajesNoLeidos = \App\Models\Mensaje::whereHas('conversacion', function($q) {
                                 $q->where('empresa_user_id', Auth::id());
@@ -165,6 +168,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('empresa.buscador.index')" :active="request()->routeIs('empresa.buscador.*')">
                     Buscar Candidatos
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('empresa.reportes.index')" :active="request()->routeIs('empresa.reportes.*')">
+                    Reportes
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('mensajeria.index')" :active="request()->routeIs('mensajeria.*')">
                     Mensajes

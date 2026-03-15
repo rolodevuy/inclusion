@@ -11,6 +11,7 @@ use App\Http\Controllers\Candidato\ProfileController as CandidatoProfileControll
 use App\Http\Controllers\Candidato\SolicitudController as CandidatoSolicitudController;
 use App\Http\Controllers\Empresa\BuscadorController;
 use App\Http\Controllers\Empresa\OfertaController as EmpresaOfertaController;
+use App\Http\Controllers\Empresa\ReporteController;
 use App\Http\Controllers\Empresa\ProfileController as EmpresaProfileController;
 use App\Http\Controllers\Empresa\SolicitudController as EmpresaSolicitudController;
 use App\Http\Controllers\MensajeriaController;
@@ -82,6 +83,9 @@ Route::middleware(['auth', 'role:empresa'])->prefix('empresa')->name('empresa.')
     Route::get('/ofertas/{oferta}/editar', [EmpresaOfertaController::class, 'edit'])->name('ofertas.edit');
     Route::put('/ofertas/{oferta}', [EmpresaOfertaController::class, 'update'])->name('ofertas.update');
     Route::patch('/ofertas/{oferta}/postulaciones/{postulacion}', [EmpresaOfertaController::class, 'postulacionEstado'])->name('ofertas.postulacion.estado');
+    Route::get('/ofertas/{oferta}/postulaciones/{postulacion}/candidato', [EmpresaOfertaController::class, 'verCandidato'])->name('ofertas.postulacion.candidato');
+
+    Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes.index');
 });
 
 // Mensajería (candidato y empresa)

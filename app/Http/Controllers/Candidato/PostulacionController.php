@@ -36,12 +36,14 @@ class PostulacionController extends Controller
 
         $validated = $request->validate([
             'mensaje' => 'nullable|string|max:2000',
+            'compartir_accesibilidad' => 'nullable|boolean',
         ]);
 
         $postulacion = Postulacion::create([
             'oferta_empleo_id' => $oferta->id,
             'candidato_user_id' => auth()->id(),
             'mensaje' => $validated['mensaje'] ?? null,
+            'compartir_accesibilidad' => $request->boolean('compartir_accesibilidad'),
         ]);
 
         $oferta->empresa->notify(new NuevoPostulante($postulacion));

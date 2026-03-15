@@ -122,4 +122,42 @@ class OfertaController extends Controller
 
         return back()->with('success', 'Estado de postulación actualizado.');
     }
+
+    public function verCandidato(OfertaEmpleo $oferta, \App\Models\Postulacion $postulacion)
+    {
+        if ($oferta->empresa_user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if ($postulacion->oferta_empleo_id !== $oferta->id) {
+            abort(404);
+        }
+
+        $candidato = $postulacion->candidato;
+        $profile = $candidato->candidatoProfile;
+
+        if (!$profile) {
+            return back()->with('error', 'Este candidato no completó su perfil.');
+        }
+
+        $profile->load(['departamento', 'categoriaLaboral', 'habilidades', 'experiencias']);
+
+        // Determinar si puede ver info de accesibilidad
+        $puedeVerAccesibilidad = false;
+
+        if ($profile->visibilidad_discapacidad === 'publica') {
+            $puedeVerAccesibilidad = true;
+        } elseif ($postulacion->compartir_accesibilidad && $postulacion->estado !== 'rechazada') {
+            $puedeVerAccesibilidad = true;
+        } elseif ($profile->visibilidad_discapacidad === 'bajo_solicitud') {
+            // Verificar si tiene solicitud aprobada
+            $solicitudAprobada = $profile->solicitudesAcceso()
+                ->where('empresa_user_id', auth()->id())
+                ->where('estado', 'aprobada')
+                ->exists();
+            $puedeVerAccesibilidad = $solicitudAprobada;
+        }
+
+        return view('empresa.ofertas.candidato', compact('oferta', 'postulacion', 'candidato', 'profile', 'puedeVerAccesibilidad'));
+    }
 }

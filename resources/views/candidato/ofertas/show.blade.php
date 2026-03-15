@@ -86,6 +86,24 @@
                                 placeholder="Contale a la empresa por qué te interesa este puesto...">{{ old('mensaje') }}</textarea>
                             <x-input-error :messages="$errors->get('mensaje')" class="mt-2" />
                         </div>
+
+                        @if(auth()->user()->candidatoProfile && auth()->user()->candidatoProfile->tipo_discapacidad)
+                        <div class="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" name="compartir_accesibilidad" value="1"
+                                       {{ old('compartir_accesibilidad') ? 'checked' : '' }}
+                                       class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                                <div>
+                                    <span class="text-base font-medium text-gray-800">Compartir mi información de accesibilidad con esta empresa</span>
+                                    <p class="text-sm text-gray-600 mt-1">
+                                        Si marcás esta opción, la empresa podrá ver tu información de accesibilidad (tipo de discapacidad, certificado, adaptaciones) mientras tu postulación esté activa.
+                                        Si tu postulación es rechazada, el acceso se revoca automáticamente.
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        @endif
+
                         <x-primary-button>Enviar postulación</x-primary-button>
                     </form>
                 @endif
