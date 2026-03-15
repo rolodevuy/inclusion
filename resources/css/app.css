@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accesibilidad: indicador de foco visible global */
+*:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-600;
+}
+
+/* Áreas clicables mínimo 44x44px para accesibilidad táctil */
+button, a, input[type="checkbox"], input[type="radio"], select {
+    min-height: 44px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    min-width: 20px;
+    min-height: 20px;
+}
