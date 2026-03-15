@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Empresa;
 use App\Http\Controllers\Controller;
 use App\Models\CandidatoProfile;
 use App\Models\SolicitudAcceso;
+use App\Notifications\SolicitudAccesoRecibida;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -36,12 +37,14 @@ class SolicitudController extends Controller
             'mensaje' => 'nullable|string|max:500',
         ]);
 
-        SolicitudAcceso::create([
+        $solicitud = SolicitudAcceso::create([
             'empresa_user_id' => auth()->id(),
             'candidato_profile_id' => $candidato->id,
             'estado' => 'pendiente',
             'mensaje' => $validated['mensaje'] ?? null,
         ]);
+
+        $candidato->user->notify(new SolicitudAccesoRecibida($solicitud));
 
         return back()->with('success', 'Solicitud enviada. El candidato será notificado.');
     }

@@ -7,6 +7,7 @@ use App\Models\CategoriaLaboral;
 use App\Models\Departamento;
 use App\Models\Habilidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -50,10 +51,17 @@ class ProfileController extends Controller
             'visibilidad_discapacidad' => 'required|in:publica,bajo_solicitud,privada',
             'habilidades' => 'nullable|array',
             'habilidades.*' => 'exists:habilidades,id',
+            'certificado' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
         ]);
 
         $habilidades = $validated['habilidades'] ?? [];
         unset($validated['habilidades']);
+
+        if ($request->hasFile('certificado')) {
+            $validated['certificado_path'] = $request->file('certificado')->store('certificados', 'local');
+            $validated['certificado_estado'] = 'pendiente';
+        }
+        unset($validated['certificado']);
 
         $profile = auth()->user()->candidatoProfile()->create($validated);
         $profile->habilidades()->sync($habilidades);
@@ -90,12 +98,23 @@ class ProfileController extends Controller
             'visibilidad_discapacidad' => 'required|in:publica,bajo_solicitud,privada',
             'habilidades' => 'nullable|array',
             'habilidades.*' => 'exists:habilidades,id',
+            'certificado' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
         ]);
 
         $habilidades = $validated['habilidades'] ?? [];
         unset($validated['habilidades']);
 
         $profile = auth()->user()->candidatoProfile;
+
+        if ($request->hasFile('certificado')) {
+            if ($profile->certificado_path) {
+                Storage::disk('local')->delete($profile->certificado_path);
+            }
+            $validated['certificado_path'] = $request->file('certificado')->store('certificados', 'local');
+            $validated['certificado_estado'] = 'pendiente';
+        }
+        unset($validated['certificado']);
+
         $profile->update($validated);
         $profile->habilidades()->sync($habilidades);
 

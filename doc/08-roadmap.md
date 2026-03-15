@@ -55,11 +55,25 @@
 - [x] Navegación actualizada para ambos roles
 
 ### Sprint 6: Mensajería
-- [ ] Sistema de mensajería empresa-candidato
+- [x] Sistema de mensajería empresa-candidato
+- [x] Bandeja de entrada con indicador de no leídos
+- [x] Vista de conversación estilo chat
+- [x] Lectura automática al abrir conversación
+
+### Sprint 7: Notificaciones por email
+- [x] Mailer configurado (log para dev, listo para SMTP en producción)
+- [x] Notificación al candidato: postulación aceptada/rechazada
+- [x] Notificación a empresa: nuevo postulante
+- [x] Notificación: nuevo mensaje recibido
+- [x] Notificación al candidato: solicitud de acceso recibida
+
+### Sprint 8: Verificación de certificados
+- [x] Subida de certificado en formulario candidato
+- [x] Panel admin de verificación (descargar, verificar, rechazar con motivo)
+- [x] Badge de pendientes en navegación admin
+- [x] Estado de verificación visible en perfil del candidato
 
 ### Pendientes Fase 2
-- [ ] Verificación de certificados de discapacidad
-- [ ] Notificaciones por email
 - [ ] Reportes de inclusión laboral para empresas
 - [ ] API REST para integraciones
 

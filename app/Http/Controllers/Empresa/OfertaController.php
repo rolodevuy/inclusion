@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoriaLaboral;
+use App\Notifications\PostulacionEstadoCambiado;
 use App\Models\Departamento;
 use App\Models\OfertaEmpleo;
 use Illuminate\Http\Request;
@@ -114,6 +115,10 @@ class OfertaController extends Controller
         ]);
 
         $postulacion->update($validated);
+
+        if (in_array($validated['estado'], ['aceptada', 'rechazada'])) {
+            $postulacion->candidato->notify(new PostulacionEstadoCambiado($postulacion));
+        }
 
         return back()->with('success', 'Estado de postulación actualizado.');
     }

@@ -111,6 +111,27 @@
                         <dt class="text-sm font-medium text-gray-500">Certificado de discapacidad</dt>
                         <dd class="text-base text-gray-900">{{ $profile->tiene_certificado ? 'Sí' : 'No' }}</dd>
                     </div>
+                    @if($profile->certificado_path)
+                    <div>
+                        <dt class="text-sm font-medium text-gray-500">Estado de verificación</dt>
+                        <dd class="text-base">
+                            @switch($profile->certificado_estado)
+                                @case('pendiente')
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">Pendiente de verificación</span>
+                                    @break
+                                @case('verificado')
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">Verificado</span>
+                                    @break
+                                @case('rechazado')
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">Rechazado</span>
+                                    @if($profile->certificado_observaciones)
+                                        <p class="text-sm text-red-600 mt-1">{{ $profile->certificado_observaciones }}</p>
+                                    @endif
+                                    @break
+                            @endswitch
+                        </dd>
+                    </div>
+                    @endif
                     @if($profile->necesidades_adaptacion)
                     <div>
                         <dt class="text-sm font-medium text-gray-500">Necesidades de adaptación</dt>

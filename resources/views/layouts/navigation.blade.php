@@ -76,6 +76,17 @@
                         <x-nav-link :href="route('admin.catalogos.index')" :active="request()->routeIs('admin.catalogos.*')">
                             Catálogos
                         </x-nav-link>
+                        @php
+                            $certPendientes = \App\Models\CandidatoProfile::where('certificado_estado', 'pendiente')->count();
+                        @endphp
+                        <x-nav-link :href="route('admin.certificados.index')" :active="request()->routeIs('admin.certificados.*')">
+                            Certificados
+                            @if($certPendientes > 0)
+                                <span class="ml-1 inline-flex items-center justify-center px-2 py-0.5 rounded-full text-xs font-bold bg-yellow-500 text-white" aria-label="{{ $certPendientes }} pendientes">
+                                    {{ $certPendientes }}
+                                </span>
+                            @endif
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -170,6 +181,12 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.catalogos.index')" :active="request()->routeIs('admin.catalogos.*')">
                     Catálogos
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.certificados.index')" :active="request()->routeIs('admin.certificados.*')">
+                    Certificados
+                    @if($certPendientes > 0)
+                        <span class="ml-1 inline-flex items-center justify-center px-2 py-0.5 rounded-full text-xs font-bold bg-yellow-500 text-white">{{ $certPendientes }}</span>
+                    @endif
                 </x-responsive-nav-link>
             @endif
         </div>

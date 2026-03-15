@@ -5,7 +5,7 @@
 
     <div class="py-8">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('candidato.perfil.store') }}" class="bg-white shadow rounded-lg p-6 space-y-6">
+            <form method="POST" action="{{ route('candidato.perfil.store') }}" enctype="multipart/form-data" class="bg-white shadow rounded-lg p-6 space-y-6">
                 @csrf
 
                 <!-- Paso 1: Información básica -->
@@ -120,6 +120,14 @@
                                        class="rounded text-blue-600 focus:ring-blue-500">
                                 <span class="text-base text-gray-700">Tengo certificado de discapacidad</span>
                             </label>
+                        </div>
+
+                        <div>
+                            <label for="certificado" class="block text-base font-medium text-gray-900">Subir certificado (opcional)</label>
+                            <input type="file" id="certificado" name="certificado" accept=".pdf,.jpg,.jpeg,.png"
+                                   class="mt-1 block w-full text-base text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                            <p class="text-sm text-gray-500 mt-1">PDF, JPG o PNG. Máximo 5 MB. Será verificado por el equipo.</p>
+                            <x-input-error :messages="$errors->get('certificado')" class="mt-2" />
                         </div>
 
                         <div>

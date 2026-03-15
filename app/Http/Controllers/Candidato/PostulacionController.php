@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Candidato;
 use App\Http\Controllers\Controller;
 use App\Models\OfertaEmpleo;
 use App\Models\Postulacion;
+use App\Notifications\NuevoPostulante;
 use Illuminate\Http\Request;
 
 class PostulacionController extends Controller
@@ -37,11 +38,13 @@ class PostulacionController extends Controller
             'mensaje' => 'nullable|string|max:2000',
         ]);
 
-        Postulacion::create([
+        $postulacion = Postulacion::create([
             'oferta_empleo_id' => $oferta->id,
             'candidato_user_id' => auth()->id(),
             'mensaje' => $validated['mensaje'] ?? null,
         ]);
+
+        $oferta->empresa->notify(new NuevoPostulante($postulacion));
 
         return redirect()->route('candidato.postulaciones.index')
             ->with('success', 'Te postulaste correctamente.');

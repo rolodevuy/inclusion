@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CatalogoController;
+use App\Http\Controllers\Admin\CertificadoController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Candidato\ExperienciaController;
@@ -104,6 +105,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/catalogos/habilidades', [CatalogoController::class, 'storeHabilidad'])->name('catalogos.habilidades.store');
     Route::put('/catalogos/habilidades/{habilidad}', [CatalogoController::class, 'updateHabilidad'])->name('catalogos.habilidades.update');
     Route::delete('/catalogos/habilidades/{habilidad}', [CatalogoController::class, 'destroyHabilidad'])->name('catalogos.habilidades.destroy');
+
+    Route::get('/certificados', [CertificadoController::class, 'index'])->name('certificados.index');
+    Route::get('/certificados/{profile}/descargar', [CertificadoController::class, 'descargar'])->name('certificados.descargar');
+    Route::patch('/certificados/{profile}/verificar', [CertificadoController::class, 'verificar'])->name('certificados.verificar');
+    Route::patch('/certificados/{profile}/rechazar', [CertificadoController::class, 'rechazar'])->name('certificados.rechazar');
 });
 
 require __DIR__.'/auth.php';

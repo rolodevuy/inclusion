@@ -17,6 +17,9 @@ class CandidatoProfile extends Model
         'tiene_certificado',
         'necesidades_adaptacion',
         'visibilidad_discapacidad',
+        'certificado_path',
+        'certificado_estado',
+        'certificado_observaciones',
     ];
 
     protected function casts(): array

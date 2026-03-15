@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conversacion;
 use App\Models\Mensaje;
 use App\Models\User;
+use App\Notifications\NuevoMensaje;
 use Illuminate\Http\Request;
 
 class MensajeriaController extends Controller
@@ -61,6 +62,9 @@ class MensajeriaController extends Controller
 
         $conversacion->touch();
 
+        $destinatario = $conversacion->otroUsuario($user);
+        $destinatario->notify(new NuevoMensaje($conversacion, $user));
+
         return back()->with('success', 'Mensaje enviado.');
     }
 
@@ -97,6 +101,8 @@ class MensajeriaController extends Controller
             'remitente_user_id' => $user->id,
             'contenido' => $validated['contenido'],
         ]);
+
+        $destinatario->notify(new NuevoMensaje($conversacion, $user));
 
         return redirect()->route('mensajeria.show', $conversacion)
             ->with('success', 'Conversación iniciada.');
