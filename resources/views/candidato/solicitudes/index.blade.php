@@ -65,7 +65,7 @@
             @empty
                 <div class="bg-white shadow rounded-lg p-8 text-center">
                     <p class="text-gray-500 text-lg">No tenés solicitudes de acceso.</p>
-                    <p class="text-gray-400 mt-2">Cuando una empresa solicite ver tu información de accesibilidad, aparecerá acá.</p>
+                    <p class="text-gray-500 mt-2">Cuando una empresa solicite ver tu información de accesibilidad, aparecerá acá.</p>
                 </div>
             @endforelse
 

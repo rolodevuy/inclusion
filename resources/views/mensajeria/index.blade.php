@@ -42,7 +42,7 @@
                                         </p>
                                     @endif
                                 </div>
-                                <div class="text-xs text-gray-400 whitespace-nowrap">
+                                <div class="text-xs text-gray-500 whitespace-nowrap">
                                     {{ $conversacion->updated_at->diffForHumans() }}
                                 </div>
                             </div>

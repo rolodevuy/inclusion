@@ -37,9 +37,14 @@
 - [x] Focus-visible global (CSS accesibilidad)
 - [x] Colores consistentes (blue-700, contraste AA)
 - [x] Componentes Breeze actualizados (indigo → blue)
-- [ ] Pruebas con lector de pantalla
-- [ ] Pruebas de navegación por teclado completa
-- [ ] Ajustes finales
+- [x] Auditoría de accesibilidad WCAG 2.1 AA
+- [x] Modal: role="dialog", aria-modal, backdrop aria-hidden
+- [x] Dropdown: role="menu", aria-haspopup, aria-expanded, Escape key
+- [x] Errores de formulario: role="alert"
+- [x] Contraste: text-gray-400 → text-gray-500 en toda la app
+- [x] Skip link con focus visible en landing
+- [ ] Pruebas manuales con lector de pantalla (NVDA/VoiceOver)
+- [ ] Pruebas manuales de navegación por teclado completa
 
 ---
 

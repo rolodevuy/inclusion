@@ -8,7 +8,7 @@
 </head>
 <body class="font-sans antialiased bg-white">
     <a href="#main-content"
-       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50 focus:rounded-md focus:shadow-lg focus:text-blue-700">
+       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50 focus:rounded-md focus:shadow-lg focus:text-blue-700 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600">
         Ir al contenido principal
     </a>
 

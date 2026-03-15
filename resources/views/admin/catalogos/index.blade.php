@@ -97,7 +97,7 @@
                                     @if($hab->categoriaLaboral)
                                         <span class="text-sm text-gray-500">({{ $hab->categoriaLaboral->nombre }})</span>
                                     @else
-                                        <span class="text-sm text-gray-400">(transversal)</span>
+                                        <span class="text-sm text-gray-500">(transversal)</span>
                                     @endif
                                 </span>
                                 <div class="flex gap-2">

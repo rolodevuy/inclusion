@@ -27,7 +27,7 @@
                                         @if($profile->tipo_discapacidad)
                                             <p class="text-sm text-gray-600">Tipo: {{ $profile->tipo_discapacidad }}</p>
                                         @endif
-                                        <p class="text-xs text-gray-400 mt-1">Enviado {{ $profile->updated_at->diffForHumans() }}</p>
+                                        <p class="text-xs text-gray-500 mt-1">Enviado {{ $profile->updated_at->diffForHumans() }}</p>
                                     </div>
 
                                     <div class="flex items-center gap-2 flex-wrap">

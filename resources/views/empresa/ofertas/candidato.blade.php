@@ -131,7 +131,7 @@
                             El candidato no compartió su información de accesibilidad para esta postulación.
                         </p>
                         @if($profile->visibilidad_discapacidad === 'bajo_solicitud')
-                            <p class="text-sm text-gray-400 mt-1">
+                            <p class="text-sm text-gray-500 mt-1">
                                 Podés solicitar acceso desde el
                                 <a href="{{ route('empresa.buscador.show', $profile) }}" class="text-blue-700 hover:underline">buscador de candidatos</a>.
                             </p>

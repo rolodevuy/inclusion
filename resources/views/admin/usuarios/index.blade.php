@@ -68,7 +68,7 @@
                                             </button>
                                         </form>
                                     @else
-                                        <span class="text-sm text-gray-400">—</span>
+                                        <span class="text-sm text-gray-500">—</span>
                                     @endif
                                 </td>
                             </tr>

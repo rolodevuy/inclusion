@@ -22,7 +22,7 @@
                             {{ $otro->name }}
                         @endif
                     </span>
-                    <span class="text-gray-400">({{ $otro->role === 'empresa' ? 'Empresa' : 'Candidato' }})</span>
+                    <span class="text-gray-500">({{ $otro->role === 'empresa' ? 'Empresa' : 'Candidato' }})</span>
                 </p>
             </div>
 
