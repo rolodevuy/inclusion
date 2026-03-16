@@ -17,8 +17,14 @@
             @else
                 <div class="space-y-4">
                     @foreach($postulaciones as $postulacion)
+                        @php
+                            $pasos = ['pendiente', 'vista', 'aceptada'];
+                            $esRechazada = $postulacion->estado === 'rechazada';
+                            $pasoActual = $esRechazada ? -1 : array_search($postulacion->estado, $pasos);
+                            $porcentaje = $esRechazada ? 100 : (($pasoActual + 1) / count($pasos)) * 100;
+                        @endphp
                         <div class="bg-white shadow rounded-lg p-5">
-                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                                 <div class="flex-1">
                                     <h2 class="font-semibold text-gray-800">
                                         @if($postulacion->oferta->estado === 'activa')
@@ -38,14 +44,26 @@
                                     </p>
                                     <p class="text-xs text-gray-500 mt-1">Postulación enviada {{ $postulacion->created_at->diffForHumans() }}</p>
                                 </div>
-                                <div>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
-                                        @if($postulacion->estado === 'pendiente') bg-yellow-100 text-yellow-800
-                                        @elseif($postulacion->estado === 'vista') bg-blue-100 text-blue-800
-                                        @elseif($postulacion->estado === 'aceptada') bg-green-100 text-green-800
-                                        @else bg-red-100 text-red-800 @endif">
-                                        {{ ucfirst($postulacion->estado) }}
-                                    </span>
+                            </div>
+
+                            {{-- Progress bar --}}
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-medium mb-1" aria-hidden="true">
+                                    <span class="{{ $pasoActual >= 0 && !$esRechazada ? 'text-blue-700' : ($esRechazada ? 'text-red-600' : 'text-gray-400') }}">Enviada</span>
+                                    <span class="{{ $pasoActual >= 1 && !$esRechazada ? 'text-blue-700' : ($esRechazada ? 'text-red-600' : 'text-gray-400') }}">Vista</span>
+                                    @if($esRechazada)
+                                        <span class="text-red-600">Rechazada</span>
+                                    @else
+                                        <span class="{{ $pasoActual >= 2 ? 'text-green-700' : 'text-gray-400' }}">Aceptada</span>
+                                    @endif
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5" role="progressbar"
+                                     aria-valuenow="{{ round($porcentaje) }}"
+                                     aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Estado de postulación: {{ ucfirst($postulacion->estado) }}">
+                                    <div class="h-2.5 rounded-full transition-all duration-300
+                                        {{ $esRechazada ? 'bg-red-500' : ($pasoActual >= 2 ? 'bg-green-500' : 'bg-blue-600') }}"
+                                        style="width: {{ $porcentaje }}%"></div>
                                 </div>
                             </div>
                         </div>

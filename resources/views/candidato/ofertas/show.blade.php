@@ -39,6 +39,15 @@
                             {{ $oferta->horario }}
                         </span>
                     @endif
+                    @if($oferta->salario_visible && $oferta->salarioFormateado())
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800 font-medium">
+                            {{ $oferta->salarioFormateado() }}
+                        </span>
+                    @else
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-600">
+                            Salario a convenir
+                        </span>
+                    @endif
                 </div>
 
                 <h2 class="text-lg font-semibold text-gray-800">Descripción</h2>
@@ -65,15 +74,32 @@
             {{-- Postulación --}}
             <div class="bg-white shadow rounded-lg p-6">
                 @if($postulacionExistente)
-                    <div class="flex items-center gap-3">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
-                            @if($postulacionExistente->estado === 'pendiente') bg-yellow-100 text-yellow-800
-                            @elseif($postulacionExistente->estado === 'vista') bg-blue-100 text-blue-800
-                            @elseif($postulacionExistente->estado === 'aceptada') bg-green-100 text-green-800
-                            @else bg-red-100 text-red-800 @endif">
-                            {{ ucfirst($postulacionExistente->estado) }}
-                        </span>
-                        <p class="text-gray-700">Ya te postulaste a esta oferta ({{ $postulacionExistente->created_at->diffForHumans() }}).</p>
+                    @php
+                        $pasos = ['pendiente', 'vista', 'aceptada'];
+                        $esRechazada = $postulacionExistente->estado === 'rechazada';
+                        $pasoActual = $esRechazada ? -1 : array_search($postulacionExistente->estado, $pasos);
+                        $porcentaje = $esRechazada ? 100 : (($pasoActual + 1) / count($pasos)) * 100;
+                    @endphp
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Estado de tu postulación</h2>
+                    <p class="text-gray-700 mb-3">Te postulaste {{ $postulacionExistente->created_at->diffForHumans() }}.</p>
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1" aria-hidden="true">
+                            <span class="{{ $pasoActual >= 0 && !$esRechazada ? 'text-blue-700' : ($esRechazada ? 'text-red-600' : 'text-gray-400') }}">Enviada</span>
+                            <span class="{{ $pasoActual >= 1 && !$esRechazada ? 'text-blue-700' : ($esRechazada ? 'text-red-600' : 'text-gray-400') }}">Vista</span>
+                            @if($esRechazada)
+                                <span class="text-red-600">Rechazada</span>
+                            @else
+                                <span class="{{ $pasoActual >= 2 ? 'text-green-700' : 'text-gray-400' }}">Aceptada</span>
+                            @endif
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5" role="progressbar"
+                             aria-valuenow="{{ round($porcentaje) }}"
+                             aria-valuemin="0" aria-valuemax="100"
+                             aria-label="Estado de postulación: {{ ucfirst($postulacionExistente->estado) }}">
+                            <div class="h-2.5 rounded-full transition-all duration-300
+                                {{ $esRechazada ? 'bg-red-500' : ($pasoActual >= 2 ? 'bg-green-500' : 'bg-blue-600') }}"
+                                style="width: {{ $porcentaje }}%"></div>
+                        </div>
                     </div>
                 @else
                     <h2 class="text-lg font-semibold text-gray-800 mb-3">Postularte a esta oferta</h2>

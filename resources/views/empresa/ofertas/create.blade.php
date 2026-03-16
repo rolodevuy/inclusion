@@ -94,6 +94,42 @@
                                 <x-input-error :messages="$errors->get('beneficios')" class="mt-2" />
                             </div>
 
+                            {{-- Salario --}}
+                            <fieldset class="border border-gray-200 rounded-lg p-4">
+                                <legend class="text-sm font-medium text-gray-700 px-1">Salario</legend>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <x-input-label for="salario_min" value="Mínimo" />
+                                        <x-text-input id="salario_min" name="salario_min" type="number" class="mt-1 block w-full"
+                                            :value="old('salario_min')" min="0" inputmode="numeric" placeholder="Ej: 25000" />
+                                        <x-input-error :messages="$errors->get('salario_min')" class="mt-2" />
+                                    </div>
+                                    <div>
+                                        <x-input-label for="salario_max" value="Máximo" />
+                                        <x-text-input id="salario_max" name="salario_max" type="number" class="mt-1 block w-full"
+                                            :value="old('salario_max')" min="0" inputmode="numeric" placeholder="Ej: 45000" />
+                                        <x-input-error :messages="$errors->get('salario_max')" class="mt-2" />
+                                    </div>
+                                    <div>
+                                        <x-input-label for="salario_moneda" value="Moneda" />
+                                        <select id="salario_moneda" name="salario_moneda"
+                                            class="mt-1 block w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm text-base">
+                                            <option value="UYU" @selected(old('salario_moneda') === 'UYU')>UYU (Pesos)</option>
+                                            <option value="USD" @selected(old('salario_moneda') === 'USD')>USD (Dólares)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" name="salario_visible" value="1"
+                                               {{ old('salario_visible', true) ? 'checked' : '' }}
+                                               class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span class="text-sm text-gray-700">Mostrar salario en la publicación</span>
+                                    </label>
+                                    <p class="text-xs text-gray-500 mt-1" id="salario_visible_help">Si desmarcás esta opción, se mostrará "Salario a convenir".</p>
+                                </div>
+                            </fieldset>
+
                             {{-- Adaptaciones --}}
                             <div>
                                 <x-input-label for="adaptaciones_disponibles" value="Adaptaciones disponibles" />

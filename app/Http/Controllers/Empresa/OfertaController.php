@@ -42,8 +42,13 @@ class OfertaController extends Controller
             'requisitos' => 'nullable|string',
             'beneficios' => 'nullable|string',
             'adaptaciones_disponibles' => 'nullable|string',
+            'salario_min' => 'nullable|integer|min:0',
+            'salario_max' => 'nullable|integer|min:0|gte:salario_min',
+            'salario_moneda' => 'nullable|in:UYU,USD',
+            'salario_visible' => 'nullable|boolean',
         ]);
 
+        $validated['salario_visible'] = $request->boolean('salario_visible');
         $validated['empresa_user_id'] = auth()->id();
         $validated['estado'] = 'activa';
 
@@ -94,9 +99,14 @@ class OfertaController extends Controller
             'requisitos' => 'nullable|string',
             'beneficios' => 'nullable|string',
             'adaptaciones_disponibles' => 'nullable|string',
+            'salario_min' => 'nullable|integer|min:0',
+            'salario_max' => 'nullable|integer|min:0|gte:salario_min',
+            'salario_moneda' => 'nullable|in:UYU,USD',
+            'salario_visible' => 'nullable|boolean',
             'estado' => 'required|in:activa,pausada,cerrada',
         ]);
 
+        $validated['salario_visible'] = $request->boolean('salario_visible');
         $oferta->update($validated);
 
         return redirect()->route('empresa.ofertas.show', $oferta)

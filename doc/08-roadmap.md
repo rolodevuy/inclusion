@@ -100,7 +100,18 @@
 - [x] Candidatos sugeridos para empresas (en vista de oferta)
 - [x] Badge de porcentaje de compatibilidad
 
+### Sprint 12: Salarios en ofertas
+- [x] Migración: salario_min, salario_max, salario_moneda (UYU/USD), salario_visible
+- [x] Campos de salario en formularios de crear/editar oferta
+- [x] Mostrar salario en listado y detalle de ofertas (candidato)
+- [x] Opción "Salario a convenir" cuando no es visible
+- [x] Progress bar de estado de postulación (candidato)
+
 ### Pendientes Fase 3
-- [ ] App móvil
+- [ ] Dashboard enriquecido para empresas (guías, métricas, actividad)
+- [ ] Página de recursos para candidatos (derechos, tips, preparación)
+- [ ] Barra de completitud de perfil del candidato
+- [ ] Nuevo rol: Consultora/Reclutadora
+- [ ] App móvil (Flutter — proyecto separado)
 - [ ] Expansión a otros países
 - [ ] Integración con portales de empleo existentes

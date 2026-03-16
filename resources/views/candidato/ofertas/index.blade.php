@@ -88,7 +88,12 @@
                                     {{ $rec->departamento->nombre ?? '' }}
                                 </span>
                             </div>
-                            <p class="text-sm text-gray-700 mt-3 line-clamp-2 flex-1">{{ Str::limit($rec->descripcion, 120) }}</p>
+                            @if($rec->salario_visible && $rec->salarioFormateado())
+                                <p class="text-sm font-medium text-green-700 mt-2">{{ $rec->salarioFormateado() }}</p>
+                            @else
+                                <p class="text-sm text-gray-500 mt-2">Salario a convenir</p>
+                            @endif
+                            <p class="text-sm text-gray-700 mt-2 line-clamp-2 flex-1">{{ Str::limit($rec->descripcion, 120) }}</p>
                         </article>
                     @endforeach
                 </div>
@@ -124,7 +129,12 @@
                                     {{ $oferta->departamento->nombre ?? '' }}
                                 </span>
                             </div>
-                            <p class="text-sm text-gray-700 mt-3 line-clamp-3 flex-1">{{ Str::limit($oferta->descripcion, 150) }}</p>
+                            @if($oferta->salario_visible && $oferta->salarioFormateado())
+                                <p class="text-sm font-medium text-green-700 mt-2">{{ $oferta->salarioFormateado() }}</p>
+                            @elseif(!$oferta->salario_visible || (!$oferta->salario_min && !$oferta->salario_max))
+                                <p class="text-sm text-gray-500 mt-2">Salario a convenir</p>
+                            @endif
+                            <p class="text-sm text-gray-700 mt-2 line-clamp-3 flex-1">{{ Str::limit($oferta->descripcion, 150) }}</p>
                             <p class="text-xs text-gray-500 mt-3">{{ $oferta->created_at->diffForHumans() }}</p>
                         </article>
                     @endforeach
